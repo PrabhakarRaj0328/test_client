@@ -1,7 +1,6 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import 'package:mail_client/inbox.dart';
 // import 'package:mail_client/inbox.dart';
 
 class Login extends StatefulWidget {
@@ -16,8 +15,8 @@ class _LoginState extends State<Login> {
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
-  final String _username = 'Mail';
-  final String _password = 'Client';
+  final String _username = 'mail';
+  final String _password = 'client';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -121,15 +120,13 @@ class _LoginState extends State<Login> {
                           onPressed: () {
                             String enteredUsername =
                                 _usernameController.text.trim();
-                            String enteredPassword = 
+                            String enteredPassword =
                                 _passwordController.text.trim();
                             if (_formKey.currentState?.validate() ?? false) {
                               if (enteredUsername == _username &&
                                   enteredPassword == _password) {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => Inbox()));
+                                Navigator.pushNamedAndRemoveUntil(
+                                    context, '/inbox', (_) => false);
                               } else {
                                 ScaffoldMessenger.of(context).showSnackBar(
                                   SnackBar(

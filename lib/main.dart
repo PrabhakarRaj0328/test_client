@@ -1,17 +1,16 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import 'package:mail_client/inbox.dart';
-import 'package:mail_client/login.dart';
-import 'package:mail_client/mail.dart';
+import 'package:mail_client/views/mail_widget.dart';
+import 'package:mail_client/views/login.dart';
 
 void main() => runApp(MaterialApp(
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
       initialRoute: '/login',
       routes: {
-        '/view':(context) => const Message(),
         '/inbox': (context) => const Inbox(),
         '/login': (context) => const Login(),
       },
