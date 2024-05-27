@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
+import 'package:mail_client/views/compose.dart';
 import 'package:mail_client/views/mail_list.dart';
 
 class Inbox extends StatefulWidget {
@@ -71,20 +72,24 @@ class _InboxState extends State<Inbox> {
                 'Mail Client',
                 style: TextStyle(
                   fontSize: 18.0,
-                  color: const Color.fromARGB(255, 207, 29, 16),
-                  fontWeight: FontWeight.w500,
+                  color: Color.fromARGB(255, 231, 43, 29),
+                  fontWeight: FontWeight.w600,
                   fontFamily: 'Inter-Bold',
                 ),
               ),
             ),
+            Divider(
+              thickness: 0.5,
+              height: 4,
+            ),
             Padding(
-              padding: const EdgeInsets.fromLTRB(20.0, 40, 0, 0),
+              padding: const EdgeInsets.fromLTRB(20.0, 30, 0, 0),
               child: Align(
                 alignment: Alignment.centerLeft,
                 child: Row(
                   children: <Widget>[
                     Icon(
-                      Icons.inbox,
+                      Icons.inbox_sharp,
                       size: 25,
                     ),
                     SizedBox(width: 22),
@@ -107,7 +112,7 @@ class _InboxState extends State<Inbox> {
                 child: Row(
                   children: <Widget>[
                     Icon(
-                      Icons.send,
+                      Icons.send_sharp,
                       size: 25,
                     ),
                     SizedBox(width: 22),
@@ -130,7 +135,7 @@ class _InboxState extends State<Inbox> {
                 child: Row(
                   children: <Widget>[
                     Icon(
-                      Icons.drafts,
+                      Icons.drafts_sharp,
                       size: 25,
                     ),
                     SizedBox(width: 22),
@@ -233,9 +238,13 @@ class _InboxState extends State<Inbox> {
         centerTitle: true,
       ),
       floatingActionButton: FloatingActionButton(
-        backgroundColor: Color.fromARGB(255, 167, 211, 247),
-        onPressed: () {},
+        backgroundColor: const Color.fromARGB(255, 9, 128, 226),
+        onPressed: () {
+          Navigator.of(context)
+              .push(MaterialPageRoute(builder: (context) => Compose()));
+        },
         child: Icon(
+          color: const Color.fromARGB(255, 255, 255, 255),
           Icons.edit,
         ),
       ),

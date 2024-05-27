@@ -12,7 +12,7 @@ class MailList extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       leading: CircleAvatar(
-        backgroundColor: Color.fromARGB(255, 167, 211, 247),
+        backgroundColor: const Color.fromARGB(255, 9, 128, 226),
         child: Text(
           email.sender.substring(0, 1).toUpperCase(),
           style: TextStyle(
