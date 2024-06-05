@@ -1,13 +1,13 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import 'package:mail_client/views/mail_widget.dart';
+import 'package:mail_client/src/models/user.dart';
 
 class Message extends StatelessWidget {
   final Mail email;
 
   const Message({super.key, required this.email});
-
+// code for how a mail looks once opened 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,6 +41,7 @@ class Message extends StatelessWidget {
                   height: 25,
                 ),
                 Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     CircleAvatar(
                       backgroundColor: const Color.fromARGB(255, 9, 128, 226),
@@ -56,14 +57,16 @@ class Message extends StatelessWidget {
                     SizedBox(
                       width: 15,
                     ),
-                    Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
+                    Expanded(
+                        child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
                           Text(
                             email.sender,
+                            softWrap: true,
                             style: TextStyle(
                               fontFamily: 'Inter-Bold',
-                              fontSize: 20,
+                              fontSize: 15,
                             ),
                           ),
                           Row(children: [
@@ -73,7 +76,7 @@ class Message extends StatelessWidget {
                             ),
                             Icon(Icons.arrow_drop_down)
                           ])
-                        ])
+                        ]))
                   ],
                 ),
                 SizedBox(

@@ -1,8 +1,11 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
-// import 'package:mail_client/inbox.dart';
+import 'package:mail_client/src/services/auth.dart';
 
+// User inputs the username and password in the respective TextFields and on tapping
+// on the login button the entered data is sent to the iik imap server which checks for
+// authentication and prompts accordingly to the user whether he was successful or unsuccessful
 class Login extends StatefulWidget {
   const Login({super.key});
 
@@ -15,8 +18,6 @@ class _LoginState extends State<Login> {
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
-  final String _username = 'mail';
-  final String _password = 'client';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -113,29 +114,19 @@ class _LoginState extends State<Login> {
                         height: 50.0,
                         width: 300.0,
                         child: ElevatedButton(
-                          style: ButtonStyle(
-                            backgroundColor:
-                                MaterialStateProperty.all<Color>(Colors.blue),
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.blue,
                           ),
-                          onPressed: () {
+                          onPressed: () async {
                             String enteredUsername =
                                 _usernameController.text.trim();
                             String enteredPassword =
                                 _passwordController.text.trim();
+                            print(enteredUsername);
                             if (_formKey.currentState?.validate() ?? false) {
-                              if (enteredUsername == _username &&
-                                  enteredPassword == _password) {
-                                Navigator.pushNamedAndRemoveUntil(
-                                    context, '/inbox', (_) => false);
-                              } else {
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                  SnackBar(
-                                    content:
-                                        Text('Incorrect username or password'),
-                                    duration: Duration(seconds: 3),
-                                  ),
-                                );
-                              }
+                              //authenticating with imap server of iitk
+                              authenticateIMAP(
+                                  context, enteredUsername, enteredPassword);
                             }
                           },
                           child: Text(

@@ -1,7 +1,7 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
-import 'package:mail_client/views/send.dart';
+import 'package:mail_client/src/services/send.dart';
 
 class Compose extends StatefulWidget {
   const Compose({super.key});
@@ -9,7 +9,7 @@ class Compose extends StatefulWidget {
   @override
   State<Compose> createState() => _ComposeState();
 }
-
+// interface for the user to compose a mail and send to the reciever
 class _ComposeState extends State<Compose> {
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _fromController = TextEditingController();
@@ -27,15 +27,15 @@ class _ComposeState extends State<Compose> {
             Icon(Icons.attach_file),
             SizedBox(width: 15),
             IconButton(
-                icon: Icon(Icons.send_sharp),
+                icon: Icon(Icons.send_sharp),// button used to send the mail
                 onPressed: () {
-                  imapExample();
-                  // smtpExample(
-                  //   _fromController.text,
-                  //   _toController.text,
-                  //   _subjectController.text,
-                  //   _bodyController.text,
-                  // );
+                  
+                  smtpExample(
+                    _fromController.text,
+                    _toController.text,
+                    _subjectController.text,
+                    _bodyController.text,
+                  );
                 }),
             SizedBox(width: 15),
             Icon(Icons.more_vert),
@@ -91,7 +91,7 @@ class _ComposeState extends State<Compose> {
                   ),
                   SizedBox(width: 12),
                   Expanded(
-                    child: TextFormField(
+                    child: TextFormField( // Input recievers address here
                       maxLines: null,
                       controller: _toController,
                       decoration: InputDecoration(
@@ -107,7 +107,7 @@ class _ComposeState extends State<Compose> {
               ),
               Padding(
                 padding: const EdgeInsets.fromLTRB(18.0, 10, 0, 0),
-                child: TextFormField(
+                child: TextFormField(  // input subject
                   controller: _subjectController,
                   maxLines: null,
                   decoration: InputDecoration(
@@ -123,7 +123,7 @@ class _ComposeState extends State<Compose> {
               ),
               Padding(
                 padding: const EdgeInsets.fromLTRB(18.0, 10, 0, 0),
-                child: TextFormField(
+                child: TextFormField( // input body
                   maxLines: null,
                   controller: _bodyController,
                   decoration: InputDecoration(
